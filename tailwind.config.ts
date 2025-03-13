@@ -9,8 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "#033944",
+        secondary: "#d2a943",
+        champion_name: "#f0e6d2",
+        champion_alias: "#fea443",
+        item_price: "#d3cbba",
+        item_title: "#ede4d0",
+        item_explanation_title: "#ae9563",
+        item_explanation_content: "#d3cbba",
+        item_ability: "#068fa2",
       },
     },
   },
