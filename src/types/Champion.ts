@@ -1,4 +1,5 @@
-interface Champion {
+export interface Champion {
+  key: string;
   id: string;
   name: string;
   alias: string;
@@ -6,4 +7,17 @@ interface Champion {
   srcset: string;
 }
 
-export default Champion;
+export interface Spell {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+}
+
+export interface ChampionDetail extends Champion {
+  spell: Spell[];
+}
+
+export interface ChampionRotation {
+  freeChampionIds: number[];
+}
