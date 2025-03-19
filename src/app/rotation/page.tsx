@@ -1,11 +1,15 @@
-// app/rotation/page.tsx
 "use client";
 
+import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
-import { getChampionRotation } from "@/utils/riotApi";
+
 import { ChampionRotation, Champion } from "@/types/Champion";
-import Image from "next/image";
+
+import { getChampionRotation } from "@/utils/riotApi";
 import { fetchChampionList } from "@/utils/serverApi";
+
+import List from "@/components/commons/List";
+import ChampionCard from "@/components/champions/ChampionCard";
 
 const RotationPage = () => {
   // 챔피언 로테이션 데이터 페칭
@@ -33,7 +37,7 @@ const RotationPage = () => {
   const freeChampions = champions?.filter((champion) =>
     rotation?.freeChampionIds.includes(Number(champion.key))
   );
-  console.log(rotation, freeChampions);
+
   // 로딩 상태
   if (rotationLoading || championsLoading) {
     return <div>Loading...</div>;
@@ -50,27 +54,17 @@ const RotationPage = () => {
   }
 
   return (
-    <div>
-      <h1>Free Champion Rotation</h1>
-      <ul>
-        {freeChampions?.map((champion) => (
-          <li key={champion.id}>
-            <Image
-              src={champion.srcset}
-              alt={champion.name}
-              width={50}
-              height={50}
-            />
-            <div>
-              <h3>
-                {champion.name} - {champion.alias}
-              </h3>
-              <p>{champion.description}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <List>
+      {freeChampions?.map((champion) => (
+        <Link key={champion.id} href={`champions/${champion.id}`}>
+          <ChampionCard
+            imageUrl={champion.srcset}
+            name={champion.name}
+            alias={champion.alias}
+          />
+        </Link>
+      ))}
+    </List>
   );
 };
 

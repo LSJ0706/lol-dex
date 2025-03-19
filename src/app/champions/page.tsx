@@ -1,25 +1,23 @@
-import Image from "next/image";
-import { fetchChampionList } from "@/utils/serverApi";
 import Link from "next/link";
+import { fetchChampionList } from "@/utils/serverApi";
+import List from "@/components/commons/List";
+import ChampionCard from "@/components/champions/ChampionCard";
 
 const ChampionPage = async () => {
   const championList = await fetchChampionList();
 
   return (
-    <div>
+    <List>
       {championList.map((champion) => (
         <Link key={champion.id} href={`champions/${champion.id}`}>
-          <Image
-            src={champion.srcset}
-            alt={champion.name}
-            width={50}
-            height={50}
+          <ChampionCard
+            imageUrl={champion.srcset}
+            name={champion.name}
+            alias={champion.alias}
           />
-          <p>{champion.name}</p>
-          <p>{champion.alias}</p>
         </Link>
       ))}
-    </div>
+    </List>
   );
 };
 

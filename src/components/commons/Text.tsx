@@ -9,6 +9,8 @@ const colorStyles = {
   item_explanation_title: "text-item_explanation_title",
   item_explanation_content: "text-item_explanation_content",
   item_ability: "text-item_ability",
+  red: "text-red-500",
+  white: "white",
 };
 
 const sizeStyles = {
@@ -19,7 +21,7 @@ const sizeStyles = {
 };
 
 const Text: React.FC<TextProps> = ({ children, color, size }) => {
-  const styles = `${colorStyles[color]} ${sizeStyles[size]}`;
+  const styles = `${colorStyles[color]} ${sizeStyles[size]} mb-4`;
   return <p className={styles}>{children}</p>;
 };
 
